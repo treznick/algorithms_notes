@@ -1,0 +1,17 @@
+Merge Sort time costs:
+
+Time to recursively sort the left, time to recursively sort the right, time to merge
+merge time = 2k-1
+
+Cost of recursively sorting the left:
+	T(n) = n/2
+Cost of recursively sorting the right:
+	T(n) = n/2
+
+Total costs:				v-merge cost
+T(n) = T(n/2) + T(n/2) + [2(n/2) + 1]
+Left Cost-^			^-Right cost
+
+each subarray will be recursively split to be sorted, so if array started at size n, 
+each subarray will be size n/2
+
