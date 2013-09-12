@@ -9,9 +9,64 @@ Cost of recursively sorting the right:
 	T(n) = n/2
 
 Total costs:				v-merge cost
-T(n) = T(n/2) + T(n/2) + [2(n/2) + 1]
+T(n) = T(n/2) + T(n/2) + [2(n/2) -1]
 Left Cost-^			^-Right cost
 
 each subarray will be recursively split to be sorted, so if array started at size n, 
 each subarray will be size n/2
+
+T(n) = 2T(n/2) + n -1
+substituting for n/2 subarrays into the term T(n/2) gives us:
+
+T(n) = 2[2T(n/4) + n/2 -1] + n -1
+	 = 4T(n/4) + 2n -3
+
+For the next recursion:
+	 = 8T(n/8) + 3n
+
+For the ith recursion:
+	 = (2^i)T(n/[2^i]) + in + C
+
+The largest possible i we can recurse to make the T(n) term T(1)
+which means that the highest i can go is log_2(n)
+
+Which means that:
+
+	 = [2^(log_2[n])]T([n/2][log_2(n)])+[log_2(n)]n
+	 = nT(n/n) + nlog_2(n)
+	 = nT(1) + nlog_2(n)
+T(n) = O(nLog_2[n])
+
+
+Counting sort:
+
+aka pigeonhole sort
+
+input A[1..n], 1 =< A[j]<=k
+output B[1..n], sorted
+
+step 1:
+
+	initialize array U[1..k] to zero
+	for j <- 1 to n
+		U[A[j]]++
+
+
+
+So:
+
+A[3,1,2,3,4,3,3,1]
+  1 2 3 4 5 6 7 8
+U[2,1,4,1]
+  1 2 3 4
+
+Step 2:
+
+	Fill in B from U:
+		j <-1
+			for i <-1 to k
+				for p <-1 U[i]
+					B[j] <- i
+					j++
+
 
